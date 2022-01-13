@@ -11,4 +11,11 @@ FROM teachers
     JOIN departments
         ON degrees.department_id = departments.id
 WHERE departments.name LIKE 'Dipartimento di Matematica'
-ORDER by surname, name7. BONUS: Selezionare per ogni studente quanti tentativi d'esame ha sostenuto persuperare ciascuno dei suoi esami
+ORDER by surname, name7. BONUS: Selezionare per ogni studente quanti tentativi d'esame ha sostenuto persuperare ciascuno dei suoi esamiSELECT students.name AS 'Name', students.surname AS 'Surname', exam_student.exam_id AS 'EsameID', COUNT(exam_student.exam_id)
+FROM students
+    JOIN exam_student
+        ON students.id = exam_student.student_id
+    JOIN exams
+        ON exam_student.exam_id = exams.id
+GROUP BY Name, Surname, EsameID
+ORDER BY esameid, surname, name
